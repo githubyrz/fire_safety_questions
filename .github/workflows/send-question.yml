@@ -26,4 +26,4 @@ jobs:
         env:
           # 将Webhook地址配置到仓库的Settings/Secrets中，命名为 WECHAT_WEBHOOK_URL
           WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}
-        run: python send_question.py
+        run: python pushquestion.py
