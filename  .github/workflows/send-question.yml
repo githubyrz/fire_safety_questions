@@ -1,0 +1,29 @@
+name: "发送每日一题"
+
+on:
+  # 方式一：定时触发，例如北京时间每天上午10点运行 (UTC+8)
+  schedule:
+    - cron: '0 2 * * *' # UTC时间2点，即北京时间10点
+  # 方式二：支持手动触发
+  workflow_dispatch:
+
+jobs:
+  send-question:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置Python环境
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: 安装依赖
+        run: pip install requests
+
+      - name: 发送题目到企业微信
+        env:
+          # 将Webhook地址配置到仓库的Settings/Secrets中，命名为 WECHAT_WEBHOOK_URL
+          WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}
+        run: python send_question.py
