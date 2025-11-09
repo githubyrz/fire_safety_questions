@@ -2,7 +2,7 @@ name: "每日一题"
 
 on:
   # 方式一：定时触发，例如北京时间每天上午10点运行 (UTC+8)
-  schedule:
+  #schedule:
     #- cron: '0 2 * * *' # UTC时间2点，即北京时间10点
   # 方式二：支持手动触发
   workflow_dispatch:
